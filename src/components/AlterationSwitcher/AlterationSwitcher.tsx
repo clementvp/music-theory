@@ -1,4 +1,4 @@
-import { Switch } from 'antd';
+import { Switch } from "antd";
 
 type AlterationSwitcherProps = {
   sharpNotation?: boolean;
@@ -15,7 +15,7 @@ const AlterationSwitcher = ({
 
   return (
     <Switch
-      style={{ background: '#1890ff' }}
+      style={{ background: "#FE938C" }}
       checkedChildren="#"
       unCheckedChildren="b"
       defaultChecked={sharpNotation}

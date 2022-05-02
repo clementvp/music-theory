@@ -1,9 +1,9 @@
-import keyboardStyle from './Keyboard.module.css';
-import { KeyboardProps, OctaviedKeyboard } from './KeyboardTypes';
-import keys from './Keys';
+import keyboardStyle from "./Keyboard.module.css";
+import { KeyboardProps, OctaviedKeyboard } from "./KeyboardTypes";
+import keys from "./Keys";
 
 const Keyboard = ({
-  highlighted = [''],
+  highlighted = [""],
   sharpNotation = true,
   octave = 1,
   rootPitch = 3,
@@ -101,6 +101,6 @@ const Keyboard = ({
     }
   };
 
-  return <ul id={keyboardStyle['keyboard']}>{buildKeyboard()}</ul>;
+  return <ul id={keyboardStyle["keyboard"]}>{buildKeyboard()}</ul>;
 };
 export default Keyboard;
