@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import keyboardStyle from "./Keyboard.module.css";
 import { KeyboardProps, OctaviedKeyboard } from "./KeyboardTypes";
 import keys from "./Keys";

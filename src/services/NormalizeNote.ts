@@ -11,7 +11,7 @@ const findOctave = (index: number, array: string[]) => {
 };
 
 export const normalizeNote = (note: string) => {
-  const splited = note.split('');
+  const splited = note.split("");
   const root = splited[0];
   let alteration = null;
   let octave;
