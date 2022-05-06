@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import keyboardStyle from "./Keyboard.module.css";
+import style from "./Keyboard.module.css";
 import { KeyboardProps, OctaviedKeyboard } from "./KeyboardTypes";
 import keys from "./Keys";
 
@@ -57,7 +56,7 @@ const Keyboard = ({
           const index = octaviedKeyboard.indexOf(found);
           octaviedKeyboard[index] = {
             ...octaviedKeyboard[index],
-            class: `${octaviedKeyboard[index].class} ${keyboardStyle.highlighted}`,
+            class: `${octaviedKeyboard[index].class} ${style.highlighted}`,
           };
         });
       }
@@ -102,6 +101,6 @@ const Keyboard = ({
     }
   };
 
-  return <ul id={keyboardStyle["keyboard"]}>{buildKeyboard()}</ul>;
+  return <ul id={style["keyboard"]}>{buildKeyboard()}</ul>;
 };
 export default Keyboard;

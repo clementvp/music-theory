@@ -1,14 +1,18 @@
 import { Row, Col } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlterationSwitcher from "../../components/AlterationSwitcher/AlterationSwitcher";
 import Keyboard from "../../components/Keyboard/Keyboard";
 import ScaleSelector from "../../components/ScaleSelector/ScaleSelector";
 import getInverseAlteration from "../../services/GetInverseAlteration";
+import processNotes from "../../services/ProcessNotes";
+import { getScaleInfo } from "../../services/ScalesService";
+import style from "./ScalesVisualizer.module.css";
 
 const ScalesVisualizer = () => {
   const [keyboardNote, setKeyboardNote] = useState("C3");
-
   const [sharpNotation, setSharpNotation] = useState(true);
+  const [selectedScale, setSelectedScale] = useState("major");
+  const [highlitedNotes, setHighlitedNotes] = useState([""]);
 
   const handleSharpNotationChange = (value: boolean) => {
     setSharpNotation(value);
@@ -20,6 +24,18 @@ const ScalesVisualizer = () => {
     setKeyboardNote(note);
   };
 
+  const handleScaleSelectorChange = (scale: string) => {
+    setSelectedScale(scale);
+  };
+
+  useEffect(() => {
+    const scaleInfos = getScaleInfo(`${keyboardNote} ${selectedScale}`);
+    const processedNotes = processNotes(scaleInfos.notes);
+    console.log(processedNotes);
+
+    setHighlitedNotes(processedNotes);
+  }, [keyboardNote, selectedScale, sharpNotation]);
+
   return (
     <>
       <h1>Scales visualizer</h1>
@@ -27,7 +43,7 @@ const ScalesVisualizer = () => {
         <Col span={12}>
           <Row>
             <Col span={12}>
-              <div style={{ height: "100%" }}>
+              <div className={style.keyboardPromptContainer}>
                 <Keyboard
                   highlighted={[keyboardNote]}
                   sharpNotation={sharpNotation}
@@ -49,15 +65,27 @@ const ScalesVisualizer = () => {
                 ></AlterationSwitcher>
               </div>
               <div>
-                <div>
+                <div className={style.scaleSelectorContainer}>
                   <span>Scale:</span>
                 </div>
-                <ScaleSelector></ScaleSelector>
+                <div>
+                  <ScaleSelector
+                    onSelectScale={handleScaleSelectorChange}
+                  ></ScaleSelector>
+                </div>
               </div>
             </Col>
           </Row>
         </Col>
-        <Col span={12}>Plop</Col>
+        <Col span={12}>
+          <div className={style.keyboardVisualiserContainer}>
+            <Keyboard
+              highlighted={highlitedNotes}
+              octave={2}
+              sharpNotation={sharpNotation}
+            ></Keyboard>
+          </div>
+        </Col>
       </Row>
     </>
   );

@@ -3,7 +3,7 @@ import Keyboard from "../../components/Keyboard/Keyboard";
 const Home = () => {
   return (
     <div className="home">
-      <Keyboard></Keyboard>
+      <Keyboard octave={2}></Keyboard>
     </div>
   );
 };

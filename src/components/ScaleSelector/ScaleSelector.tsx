@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Select } from 'antd';
-import getAllScales from '../../services/GetAllScales';
+import { useEffect, useState } from "react";
+import { Select } from "antd";
+import { getAllScales } from "../../services/ScalesService";
+import style from "./ScaleSelector.module.css";
 
 const { Option } = Select;
 
@@ -11,7 +12,7 @@ type ScaleSelectorProps = {
 const ScaleSelector = ({
   onSelectScale = (scale) => {},
 }: ScaleSelectorProps) => {
-  const [scales, setScales] = useState([{ name: '' }]);
+  const [scales, setScales] = useState([{ name: "" }]);
 
   useEffect(() => {
     const scales = getAllScales();
@@ -34,7 +35,9 @@ const ScaleSelector = ({
 
   return (
     <Select
+      className={style.scaleSelector}
       showSearch
+      defaultValue="major"
       placeholder="Select or search a  scale"
       optionFilterProp="children"
       onChange={onSelectChange}
