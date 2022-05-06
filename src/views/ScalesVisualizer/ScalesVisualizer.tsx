@@ -31,60 +31,61 @@ const ScalesVisualizer = () => {
   useEffect(() => {
     const scaleInfos = getScaleInfo(`${keyboardNote} ${selectedScale}`);
     const processedNotes = processNotes(scaleInfos.notes);
-    console.log(processedNotes);
-
     setHighlitedNotes(processedNotes);
   }, [keyboardNote, selectedScale, sharpNotation]);
 
   return (
     <>
-      <h1>Scales visualizer</h1>
       <Row>
-        <Col span={12}>
-          <Row>
-            <Col span={12}>
-              <div className={style.keyboardPromptContainer}>
-                <Keyboard
-                  highlighted={[keyboardNote]}
-                  sharpNotation={sharpNotation}
-                  onKeyClick={handleKeyClick}
-                ></Keyboard>
-              </div>
-              <div>
-                <span>Selected root note: {keyboardNote}</span>
-              </div>
-            </Col>
-            <Col span={12}>
-              <div>
-                <div>
-                  <span>Alteration:</span>
-                </div>
-                <AlterationSwitcher
-                  onNotationChange={handleSharpNotationChange}
-                  sharpNotation
-                ></AlterationSwitcher>
-              </div>
-              <div>
-                <div className={style.scaleSelectorContainer}>
-                  <span>Scale:</span>
-                </div>
-                <div>
-                  <ScaleSelector
-                    onSelectScale={handleScaleSelectorChange}
-                  ></ScaleSelector>
-                </div>
-              </div>
-            </Col>
-          </Row>
+        <Col xl={24}>
+          <h1>Scale Visualizer</h1>
         </Col>
-        <Col span={12}>
-          <div className={style.keyboardVisualiserContainer}>
+      </Row>
+      <Row>
+        <Col xl={6} xs={24}>
+          <div
+            style={{ width: "245px", marginLeft: "auto", marginRight: "auto" }}
+          >
             <Keyboard
-              highlighted={highlitedNotes}
-              octave={2}
+              onKeyClick={handleKeyClick}
+              highlighted={[keyboardNote]}
               sharpNotation={sharpNotation}
             ></Keyboard>
           </div>
+        </Col>
+        <Col xl={6} xs={24}>
+          <div style={{ marginTop: "13px" }}>
+            <h4>Notation:</h4>
+            <AlterationSwitcher
+              onNotationChange={handleSharpNotationChange}
+            ></AlterationSwitcher>
+          </div>
+          <div style={{ marginTop: "13px" }}>
+            <h4>Scale:</h4>
+            <ScaleSelector
+              onSelectScale={handleScaleSelectorChange}
+            ></ScaleSelector>
+          </div>
+        </Col>
+        <Col xl={12} xs={0}>
+          <div
+            style={{ width: "490px", marginLeft: "auto", marginRight: "auto" }}
+          >
+            <Keyboard
+              octave={2}
+              sharpNotation={sharpNotation}
+              highlighted={highlitedNotes}
+            ></Keyboard>
+          </div>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "13px" }}>
+        <Col xl={6} xs={24}>
+          <h4>Selected Root: {keyboardNote}</h4>
+        </Col>
+        <Col xl={6} xs={24}></Col>
+        <Col xl={12} xs={24}>
+          <h4>Selected Scale: {`${keyboardNote} ${selectedScale}`}</h4>
         </Col>
       </Row>
     </>

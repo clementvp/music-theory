@@ -4,7 +4,6 @@ const processNotes = (notes: string[]) => {
   const processedNotes = notes.map((note) => {
     let processedNote = note;
     const { root, alteration, octave } = normalizeNote(note);
-
     if (octave) {
       const intOctave = parseInt(octave);
       if (intOctave) {
@@ -15,7 +14,6 @@ const processNotes = (notes: string[]) => {
         }
       }
     }
-
     return processedNote;
   });
   return processedNotes;

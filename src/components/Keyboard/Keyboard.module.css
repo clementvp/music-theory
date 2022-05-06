@@ -29,8 +29,8 @@ ul {
 }
 
 .white {
-  height: 170px;
-  width: 40px;
+  height: 150px;
+  width: 35px;
   z-index: 1;
   border-left: 1px solid hsl(0, 0%, 73%);
   border-bottom: 1px solid hsl(0, 0%, 73%);
@@ -43,8 +43,8 @@ ul {
 }
 
 .black {
-  height: 110px;
-  width: 27px;
+  height: 95px;
+  width: 25px;
   margin: 0 0 0 -11px;
   z-index: 2;
   border: 1px solid black;
@@ -61,7 +61,7 @@ ul {
 }
 
 .offset {
-  margin: 0 0 0 -16px;
+  margin: 0 0 0 -14px;
 }
 
 #keyboard li:first-child {
